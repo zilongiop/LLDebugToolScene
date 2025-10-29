@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.license             = "MIT"
   s.author              = { "llred" => "badgirl@gmail.com" }
   s.social_media_url    = "https://github.com/zilongiop"
-  s.platform            = :ios, "8.0"
+  s.platform            = :ios, "15.0"
   s.source              = { :git => "https://github.com/zilongiop/LLDebugToolScene.git", :tag => s.version }
   s.requires_arc        = true
 
