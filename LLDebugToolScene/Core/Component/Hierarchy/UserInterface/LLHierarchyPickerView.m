@@ -27,7 +27,7 @@
 #import "LLThemeManager.h"
 #import "LLBaseWindow.h"
 #import "LLConfig.h"
-
+#import "LLWindowManager.h"
 #import "UIView+LL_Utils.h"
 
 @implementation LLHierarchyPickerView
@@ -45,7 +45,7 @@
     // Default to the the application's key window if none of the windows want the touch.
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    UIWindow *windowForSelection = [[UIApplication sharedApplication] keyWindow];
+    UIWindow *windowForSelection = LLWindowManager.shared.scene.windows.firstObject;
 #pragma clang diagnostic pop
     for (UIWindow *window in [[[LLHierarchyHelper shared] allWindowsIgnoreClass:[LLBaseWindow class]] reverseObjectEnumerator]) {
         if ([window hitTest:tapPointInWindow withEvent:nil]) {

@@ -26,7 +26,7 @@
 #import <UIKit/UIKit.h>
 
 #import "UIView+LLWidgetBorder.h"
-
+#import "LLWindowManager.h"
 static LLWidgetBorderHelper *_instance = nil;
 
 @implementation LLWidgetBorderHelper
@@ -41,7 +41,7 @@ static LLWidgetBorderHelper *_instance = nil;
 
 - (void)setEnable:(BOOL)enable {
     _enable = enable;
-    for (UIWindow *window in [UIApplication sharedApplication].windows) {
+    for (UIWindow *window in LLWindowManager.shared.scene.windows) {
         [window LL_updateBorderLayer:enable];
     }
 }

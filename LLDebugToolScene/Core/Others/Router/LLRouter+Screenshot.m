@@ -25,7 +25,7 @@
 
 #import "LLInternalMacros.h"
 #import "LLTool.h"
-
+#import "LLWindowManager.h"
 @implementation LLRouter (Screenshot)
 
 + (nullable UIImage *)screenshotWithScale:(CGFloat)scale
@@ -38,7 +38,7 @@
     UIGraphicsBeginImageContextWithOptions(imageSize, NO, scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    NSMutableArray *windows = [[NSMutableArray alloc] initWithArray:[[UIApplication sharedApplication] windows]];
+    NSMutableArray *windows = [[NSMutableArray alloc] initWithArray:LLWindowManager.shared.scene.windows];
     UIView *statusBar = [LLTool getUIStatusBarModern];
     if ([statusBar isKindOfClass:[UIView class]]) {
         [windows addObject:statusBar];

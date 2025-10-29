@@ -40,7 +40,14 @@
     }
     return self;
 }
-
+- (instancetype)initWithWindowScene:(UIWindowScene *)windowScene {
+    if (self = [super initWithWindowScene:windowScene]) {
+        if (!self.rootViewController) {
+            self.rootViewController = [[LLScreenshotViewController alloc] init];
+        }
+    }
+    return self;
+}
 - (void)componentDidFinish {
     [[LLWindowManager shared] showEntryWindow];
 }

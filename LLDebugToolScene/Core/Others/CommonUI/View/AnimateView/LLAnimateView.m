@@ -27,7 +27,7 @@
 #import "LLFactory.h"
 
 #import "UIView+LL_Utils.h"
-
+#import "LLWindowManager.h"
 @interface LLAnimateView ()
 
 @property (nonatomic, strong) UIView *contentView;
@@ -52,7 +52,7 @@
 - (void)show {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    UIWindow *window = LLWindowManager.shared.scene.windows.firstObject;
 #pragma clang diagnostic pop
     [window addSubview:self];
     self.alpha = 0;

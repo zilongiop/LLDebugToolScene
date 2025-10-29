@@ -29,6 +29,7 @@
 #import "LLFactory.h"
 
 #import "UIView+LL_Utils.h"
+#import "LLWindowManager.h"
 
 static LLToastUtils *_instance = nil;
 
@@ -95,7 +96,7 @@ static LLToastUtils *_instance = nil;
     self.toastLabel.alpha = 0;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    [[UIApplication sharedApplication].keyWindow addSubview:self.toastLabel];
+    [LLWindowManager.shared.scene.windows.firstObject addSubview:self.toastLabel];
 #pragma clang diagnostic pop
     [self.toastLabel sizeToFit];
     self.toastLabel.center = CGPointMake(LL_SCREEN_WIDTH / 2.0, LL_SCREEN_HEIGHT / 2.0);

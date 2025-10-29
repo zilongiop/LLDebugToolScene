@@ -30,6 +30,7 @@
 #import "LLDebugTool.h"
 #import "LLLogDefine.h"
 #import "LLConfig.h"
+#import "LLWindowManager.h"
 
 static unsigned long long _absolutelyIdentity = 0;
 
@@ -84,8 +85,8 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
 }
 
 + (UIWindow *)topWindow {
-    UIWindow *topWindow = [UIApplication sharedApplication].delegate.window;
-    for (UIWindow *win in [UIApplication sharedApplication].windows) {
+    UIWindow *topWindow =  LLWindowManager.shared.scene.windows.firstObject;
+    for (UIWindow *win in LLWindowManager.shared.scene.windows) {
         if (!win.isHidden && win.windowLevel > topWindow.windowLevel) {
             topWindow = win;
         }
@@ -96,7 +97,7 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
 + (UIWindow *)keyWindow {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    return [UIApplication sharedApplication].keyWindow;
+    return LLWindowManager.shared.scene.windows.firstObject;
 #pragma clang diagnostic pop
 }
 
@@ -137,7 +138,7 @@ static bool _statusBarClickable = YES;
 #ifdef __IPHONE_13_0
     if (@available(iOS 13.0, *)) {
         // We can still get statusBar using the following code, but this is not recommended.
-        UIStatusBarManager *statusBarManager = [UIApplication sharedApplication].delegate.window.windowScene.statusBarManager;
+        UIStatusBarManager *statusBarManager = LLWindowManager.shared.scene.statusBarManager;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
         if ([statusBarManager respondsToSelector:@selector(createLocalStatusBar)]) {

@@ -39,6 +39,16 @@
     }
     return self;
 }
+- (instancetype)initWithWindowScene:(UIWindowScene *)windowScene {
+    if (self = [super initWithWindowScene: windowScene]) {
+        self.showAnimateStyle = LLBaseWindowShowAnimateStylePresent;
+        self.hideAnimateStyle = LLBaseWindowHideAnimateStyleDismiss;
+        if (!self.rootViewController) {
+            self.rootViewController = [[LLNavigationController alloc] initWithRootViewController:[[LLSettingViewController alloc] init]];
+        }
+    }
+    return self;
+}
 
 #pragma mark - Over write
 - (void)componentDidFinish {

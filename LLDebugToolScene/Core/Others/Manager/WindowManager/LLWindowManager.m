@@ -134,8 +134,8 @@ static LLWindowManager *_instance = nil;
         window.hidden = NO;
         window.windowLevel = self.entryWindowLevel;
     } else {
-        if (![[UIApplication sharedApplication].keyWindow isKindOfClass:[LLBaseWindow class]]) {
-            self.keyWindow = [UIApplication sharedApplication].keyWindow;
+        if (![_scene.windows.firstObject isKindOfClass:[LLBaseWindow class]]) {
+            self.keyWindow = _scene.windows.firstObject;
             self.statusBarStyle = [UIApplication sharedApplication].statusBarStyle;
             [[UIApplication sharedApplication] setStatusBarStyle:[LLThemeManager shared].statusBarStyle animated:animated];
         }

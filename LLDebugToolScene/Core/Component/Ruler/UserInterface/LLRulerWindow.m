@@ -36,7 +36,14 @@
     }
     return self;
 }
-
+- (instancetype)initWithWindowScene:(UIWindowScene *)windowScene {
+    if (self = [super initWithWindowScene:windowScene]) {
+        if (!self.rootViewController) {
+            self.rootViewController = [[LLRulerViewController alloc] init];
+        }
+    }
+    return self;
+}
 - (void)componentDidFinish {
     [[LLWindowManager shared] showEntryWindow];
 }

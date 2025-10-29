@@ -43,7 +43,18 @@
     }
     return self;
 }
-
+- (instancetype)initWithWindowScene:(UIWindowScene *)windowScene {
+    if (self = [super initWithWindowScene: windowScene]) {
+        self.showAnimateStyle = LLBaseWindowShowAnimateStylePresent;
+        self.hideAnimateStyle = LLBaseWindowHideAnimateStyleDismiss;
+        if (!self.rootViewController) {
+            LLHtmlConfigViewController *vc = [[LLHtmlConfigViewController alloc] init];
+            LLNavigationController *nav = [[LLNavigationController alloc] initWithRootViewController:vc];
+            self.rootViewController = nav;
+        }
+    }
+    return self;
+}
 #pragma mark - Over write
 - (void)componentDidFinish {
     [[LLWindowManager shared] showEntryWindow];
